@@ -1,13 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
+  <input type="text" name="nome">
+  <button onClick="adicionar()">Adicionar</button>
+
+  <ul id="lista">
+  </ul>
+
+  <div id="app">
+    <button onclick="criaQuadrado()">Clique Aqui</button>
+  </div>
+
   <script>
+    var ul = document.getElementById("lista");
+    var inputNomes = document.getElementsByName("nome");
+    var nomes = ["Diego", "Gabriel", "Lucas"];
+
+    function criaQuadrado() {
+      var square = document.createElement("CANVAS");
+
+      square.style.backgroundColor = "red"
+      square.style.width = "100px"
+      square.style.height = "100px"
+      square.style.margin = "5px"
+
+      square.addEventListener('mousemove', function (_) {
+        var newColor = getRandomColor();
+
+        square.style.backgroundColor = newColor;
+      });
+      document.body.appendChild(square);
+    }
+
+    function getRandomColor() {
+      var letters = "0123456789ABCDEF";
+      var color = "#";
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+    mostrarLista(nomes);
+
+    function adicionar() {
+      var conteudo = inputNomes[0].value;
+
+      if (nomes.indexOf(conteudo) == -1){
+        nomes.push(conteudo);
+      }
+
+      mostrarLista([conteudo]);
+
+    }
+
+    function mostrarLista(lista) {
+      for (l in lista) {
+        var li = document.createElement("li");
+
+        li.textContent = lista[l];
+
+        ul.appendChild(li);
+      }
+    }
+
   </script>
+
 </body>
+
 </html>
