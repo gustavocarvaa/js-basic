@@ -1,0 +1,2 @@
+Just a sample to test file reading
+using async methods in JavaScript.
